@@ -16,7 +16,7 @@ public class gameover extends JPanel {
         BexitFromOver.setBorderPainted(false);
         this.add(BexitFromOver);
 
-        System.out.println("sus");
+        //System.out.println("sus");
 
         /*BrestartFromOver.setBounds(400,650,150,90);
         BrestartFromOver.setOpaque(false);
