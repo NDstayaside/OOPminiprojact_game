@@ -123,12 +123,12 @@ class Fish2 extends Fish{
 
     @Override
     int getWeight() {
-        return 100;
+        return 70;
     }
 
     @Override
     int getHeight() {
-        return 82;
+        return 58;
     }
 
     @Override
@@ -158,12 +158,12 @@ class Fish3 extends Fish{
 
     @Override
     int getWeight() {
-        return 120;
+        return 85;
     }
 
     @Override
     int getHeight() {
-        return 95;
+        return 67;
     }
 
     @Override
@@ -193,12 +193,12 @@ class Fish4 extends Fish{
 
     @Override
     int getWeight() {
-        return 120;
+        return 100;
     }
 
     @Override
     int getHeight() {
-        return 95;
+        return 82;
     }
 
     @Override
