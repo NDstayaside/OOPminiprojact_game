@@ -45,6 +45,8 @@ public class gameWindow extends JFrame implements ActionListener {
             gameStart.HP = 3;
             gameStart.fishrun = false;
             gameStart.pausestatus = false;
+            gameStart.sharkThread.start();
+            gameStart.fishes.start();
         }
         //exit from home
         else if (e.getSource() == homepage.BExitFromHome) {
