@@ -201,8 +201,6 @@ public class Playground extends JPanel implements ActionListener{
         shark.y = 350;
 
         //start threads
-        sharkThread.start();
-        fishes.start();
 
     } //constructor end here
 
