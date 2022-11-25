@@ -13,8 +13,6 @@ public class winGame extends JPanel {
         BexitFromWin.setContentAreaFilled(false);
         BexitFromWin.setBorderPainted(false);
         this.add(BexitFromWin);
-
-
     }
     public void paintComponent(Graphics g){
         super.paintComponent(g);

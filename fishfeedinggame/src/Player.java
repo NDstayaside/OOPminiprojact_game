@@ -2,8 +2,7 @@ import javax.swing.*;
 import java.awt.geom.Rectangle2D;
 
 public class Player {
-    public int hp;
-    ImageIcon img;
+    public ImageIcon img;
     public int x;
     public int y;
 
@@ -59,7 +58,7 @@ public class Player {
         this.level = 1;
     }
     public void checkLevel(int score){
-        if (score >= 17 && this.level <= 3) {
+        if (score >= 20 && this.level <= 3) {
             upLevel();
         }
         else if (score >= 12 && this.level <= 2) {

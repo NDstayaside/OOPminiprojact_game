@@ -39,6 +39,7 @@ public class Playground extends JPanel implements ActionListener{
     private final ImageIcon gotohome = new ImageIcon(this.getClass().getResource("image/homeButton.png"));
     public JButton BPauseShell = new JButton(pauseShell);
     public JButton BresumeShell = new JButton(resumeShell);
+    public JButton Bbackhome = new JButton(gotohome);
 
     //player
     Player shark = new Player();
@@ -108,15 +109,20 @@ public class Playground extends JPanel implements ActionListener{
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == BPauseShell) {
             add(BresumeShell);
+            add(Bbackhome);
             remove(BPauseShell);
             pausestatus = true;
 
         } else if (e.getSource() == BresumeShell) {
             pausestatus = false;
             remove(BresumeShell);
+            remove(Bbackhome);
             add(BPauseShell);
-        }
-        else if (e.getSource() == overscreen.BexitFromOver) {
+        } else if (e.getSource() == Bbackhome) {
+            add(BPauseShell);
+            remove(BresumeShell);
+            remove(Bbackhome);
+        } else if (e.getSource() == overscreen.BexitFromOver) {
             System.exit(0);
         }
     }
@@ -137,13 +143,19 @@ public class Playground extends JPanel implements ActionListener{
         BresumeShell.setContentAreaFilled(false);
         BresumeShell.setBorderPainted(false);
 
+        Bbackhome.setOpaque(false);
+        Bbackhome.setContentAreaFilled(false);
+        Bbackhome.setBorderPainted(false);
+
         //set button bound
         BPauseShell.setBounds(380, 25, 50, 50);
         BresumeShell.setBounds(380, 25, 50, 40);
+        Bbackhome.setBounds(300, 250, 212, 78);
 
         //set button listener
         BPauseShell.addActionListener(this);
         BresumeShell.addActionListener(this);
+        Bbackhome.addActionListener(this);
         this.add(BPauseShell);  //resume ไว้ค่อยไปเพิ่มตอนกด pause
 
         //set picture---------------------------------------
@@ -197,10 +209,10 @@ public class Playground extends JPanel implements ActionListener{
         });
 
         //player first position
-        shark.x = 350;
-        shark.y = 350;
+
 
         //start threads
+
 
     } //constructor end here
 
@@ -292,6 +304,9 @@ public class Playground extends JPanel implements ActionListener{
                 levelNow++;
                 HP = 3;
                 score = 0;
+                for (int i = 0; i < fish.size(); i++) {
+                    fish.remove(i);
+                }
                 shark.resetLevel();
             }
         }

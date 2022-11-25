@@ -1,5 +1,4 @@
 import javax.swing.*;
-import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -29,8 +28,17 @@ public class gameWindow extends JFrame implements ActionListener {
         homepage.BExitFromHome.addActionListener(this);
         gameStart.BPauseShell.addActionListener(this);
         gameStart.BresumeShell.addActionListener(this);
+        gameStart.Bbackhome.addActionListener(this);
         gameStart.overscreen.BexitFromOver.addActionListener(this);
         gameStart.wining.BexitFromWin.addActionListener(this);
+
+        gameStart.sharkThread.start();
+        gameStart.fishes.start();
+        gameStart.sharkThread.suspend();
+        gameStart.fishes.suspend();
+        for (int i = 0; i < gameStart.fish.size(); i++) {
+            gameStart.fish.get(i).runner.suspend();
+        }
     }
 
     //Action listener
@@ -41,12 +49,20 @@ public class gameWindow extends JFrame implements ActionListener {
             this.remove(homepage);
             this.add(gameStart);
             gameStart.requestFocusInWindow();
+            gameStart.shark.x = 350;
+            gameStart.shark.y = 350;
             gameStart.score = 0;
             gameStart.HP = 3;
+            gameStart.levelNow = 0;
             gameStart.fishrun = false;
             gameStart.pausestatus = false;
-            gameStart.sharkThread.start();
-            gameStart.fishes.start();
+
+            gameStart.shark.resetLevel();
+            gameStart.sharkThread.resume();
+            gameStart.fishes.resume();
+            for (int i = 0; i < gameStart.fish.size(); i++) {
+                gameStart.fish.get(i).runner.resume();
+            }
         }
         //exit from home
         else if (e.getSource() == homepage.BExitFromHome) {
@@ -59,6 +75,19 @@ public class gameWindow extends JFrame implements ActionListener {
         //exit from win
         else if (e.getSource() == gameStart.wining.BexitFromWin) {
             System.exit(0);
+        }
+        //back to home from game
+        else if (e.getSource() == gameStart.Bbackhome) {
+            this.setLocationRelativeTo(null);
+            this.remove(gameStart);
+            this.add(homepage);
+            for (int i = 0; i < gameStart.fish.size(); i++) {
+                gameStart.fish.remove(i);
+                //System.out.println("delete fish");
+            }
+            gameStart.requestFocusInWindow();
+            gameStart.sharkThread.suspend();
+            gameStart.fishes.suspend();
         }
         //pause in game
         else if (e.getSource() == gameStart.BPauseShell) {
